@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v3
         with: 
         
-          ref: 'deployment'
+          ref: 'new-feature'
           token: ${{ secrets.G_TOKEN2 }}
           
       - name: setup git config
@@ -68,7 +68,7 @@ jobs:
           git commit -m "Update image for - ${{ github.sha }}"
           
       - run: echo ${{ github }}
-      - run: git push origin deployment
+      - run: git push origin new-feature
       
   deploy:
   
@@ -80,7 +80,7 @@ jobs:
     - uses: actions/checkout@v3
     
       with: 
-        ref: 'deployment'
+        ref: 'new-feature'
         token: ${{ secrets.G_TOKEN2 }}
         
     - name: Download kubectl
