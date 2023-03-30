@@ -1,26 +1,31 @@
 apiVersion: v1
-kind: Pod
-metadata:
-  name: react-pod
-  labels: 
-    app: my-react-app
-spec:
-  containers:
-  - name: react-container
-    image: 947841444229.dkr.ecr.us-east-2.amazonaws.com/react-image:0f57cc9cf8d7fc1f7c34a200ff8e6cf9b34eeaf7
-    ports:
-    - containerPort: 3000
----
-apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: react-service
 spec:
-  selector:
-    app: my-react-app
+  type: ClusterIP
   ports:
-  - name: http
-    port: 80
+  - port: 80
     targetPort: 3000
-    nodePort: 30001
-  type: NodePort
+  selector:
+    app: react-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+      - name: react-container
+        image: 233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:5b73d4beaad845fec1fd6b3a2312ae566aec226c
+        ports:
+        - containerPort: 3000  
