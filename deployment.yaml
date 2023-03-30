@@ -10,17 +10,4 @@ spec:
     image: 233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:196d162a2ad9347445254eef228a8badf88aada9
     ports:
     - containerPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-spec:
-  selector:
-    app: reactapp
-  ports:
-  - name: http
-    port: 80
-    targetPort: 3000
-    nodePort: 30001
-  type: NodePort
+
