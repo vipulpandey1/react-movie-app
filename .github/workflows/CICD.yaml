@@ -106,6 +106,5 @@ jobs:
     - name: Deploy React image to EKS cluster
       run: |
         kubectl apply -f deployment.yaml
-        kubectl apply -f ingress-resource.yaml
         
      
