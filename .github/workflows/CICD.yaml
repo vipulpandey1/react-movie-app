@@ -60,10 +60,10 @@ jobs:
       - name: setup git config
       
         run: |
-          git config --global user.email "chiragdksh@gmail.com"
-          git config --global user.name "vikashkumar0712"
+          git config --global user.email "vipul.pandeyy@gmail.com"
+          git config --global user.name "vipulpandey1"
           echo ${{ github.sha }}
-          sed -i 's+947841444229.dkr.ecr.us-east-2.amazonaws.com/react-image:.*+947841444229.dkr.ecr.us-east-2.amazonaws.com/react-image:${{ github.sha }}+g' deployment.yaml
+          sed -i 's+233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:.*+233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:${{ github.sha }}+g' deployment.yaml
           git add -A
           git commit -m "Update image for - ${{ github.sha }}"
           
@@ -96,12 +96,12 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+        aws-region: ap-south-1
 
     - name: Update kubectl context
     
       run: |
-        aws eks update-kubeconfig --name TestCluster --region us-east-2
+        aws eks update-kubeconfig --name DemoCluster --region ap-south-1
 
     - name: Deploy React image to EKS cluster
       run: |
