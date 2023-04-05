@@ -65,7 +65,7 @@ jobs:
           echo ${{ github.sha }}
           sed -i 's+233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:.*+233274203099.dkr.ecr.ap-south-1.amazonaws.com/reactapp:${{ github.sha }}+g' deployment.yaml
           git add -A
-          git commit -m "Update image for - ${{ github.sha }}"
+          git commit -m "Update image for - ${{ github.sha }}"  || echo "Nothing to push"
           
       - run: echo ${{ github }}
       - run: git push origin new-feature
