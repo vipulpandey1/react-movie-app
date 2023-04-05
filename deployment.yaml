@@ -8,7 +8,7 @@ spec:
   - port: 80
     targetPort: 3000
   selector:
-    app: react-app
+    app: reactapp
 ---
 apiVersion: apps/v1
 kind: Deployment
